@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8 ;">
+    <title>rasterizeHTML.js</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- <meta http-equiv="Content-Security-Policy" content="sandbox; default-src 'none'; img-src 'self'; style-src 'self';">  -->
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="rasterizeHTML.allinone.js"></script>
+    <style type="text/css">
+    #pageInPageCanvas,
+    #liveDemoCanvas,
+    #liveDemoInput {
+        box-sizing: border-box;
+        width: 500px;
+    }
+    
+    #pageInPageCanvas,
+    #liveDemoCanvas {
+        display: block;
+        border: 1px solid black;
+    }
+    
+    #pageInPageCanvas {
+        margin-bottom: 20px;
+        height: 300px;
+    }
+    
+    #liveDemoInput,
+    #liveDemoCanvas {
+        height: 140px;
+    }
+    
+    #liveDemoInput {
+        margin: 5px 0 20px;
+    }
+    </style>
+</head>
+
+<body>
+    <div style="background-image: url(tiger.png); height: 0;"></div>
+    <div class="wrapper">
+        <header>
+            <h1>rasterizeHTML.js</h1>
+            <p>将HTML渲染到指定的Canvas里<br />知乎就是采用了这个库</p>
+            <p class="view"><a href="https://github.com/cburgmer/rasterizeHTML.js"><small>项目地址：</small>cburgmer/rasterizeHTML.js</a></p>
+            <ul>
+                <li><a href="https://github.com/cburgmer/rasterizeHTML.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+                <li><a href="https://github.com/cburgmer/rasterizeHTML.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+                <li><a href="https://github.com/cburgmer/rasterizeHTML.js">View On <strong>GitHub</strong></a></li>
+            </ul>
+        </header>
+        <section>
+            <h2>API</h2>
+            <p>实现将浏览器整个或部分页面渲染到Canvas里。</p>
+            <div class="highlight">
+            <pre>rasterizeHTML.drawURL( <span class="na">url</span> [, canvas] [, options] )
+rasterizeHTML.drawHTML( <span class="na">html</span> [, canvas] [, options] )
+rasterizeHTML.drawDocument( <span class="na">document</span> [, canvas] [, options] )</pre>
+           </div>
+            <p>查看<a href="https://github.com/cburgmer/rasterizeHTML.js/wiki/API"> 完整文档 </a>和<a href="https://github.com/cburgmer/rasterizeHTML.js/wiki/Examples"> 案例</a>。</p>
+            <h2>原理</h2>
+            <p>出于对安全的考虑，渲染HTML到Canvas上对浏览器是有限制的。 Firefox 提供ctx.drawWindow()这个方法来实现 , 但只有Chrome提供了 (<a href="https://developer.mozilla.org/en/Drawing_Graphics_with_Canvas">Canvas绘画图像</a>)。</p>
+            <p>如此描述到<a href="http://robert.ocallahan.org/2011/11/drawing-dom-content-to-canvas.html">绘画DOM内容到Canvas</a> 和 <a href="https://developer.mozilla.org/en/HTML/Canvas/Drawing_DOM_objects_into_a_canvas">绘画DOM节点对象到Canvas</a>，然而有可能通过将HTML嵌入SVG图像&lt;foreignObject&gt;,然后通过ctx.drawImage绘画产生的图像()。</p>
+            <p>除了SVG是不允许所以rasterizeHTML链接到外部资源。js将加载外部图像、字体和内联通过样式表和存储它们 <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data: URIs</a> (或者是内联样式的元素)。</p>
+            <p>你可以听听<a href="http://2013.jsconf.eu/speakers/christoph-burgmer-a-panoramic-tour-through-html5-rendering-itself.html">cburgmer</a>讲讲在一些细节上是怎么实现的。</p>
+            <h2>案例 I</h2>
+            <canvas id="pageInPageCanvas" width="1000" height="600"></canvas>
+            <script type="text/javascript">
+            (function() {
+                var canvas = document.getElementById("pageInPageCanvas");
+
+                document.getElementsByTagName("body")[0].onload = function() {
+                    rasterizeHTML.drawURL("index.html", canvas).then(function(result) {
+                        console.log('demo I result', result);
+                    }, function(e) {
+                        console.log('demo I error', e);
+                    });
+                };
+            }());
+            </script>
+            <h2>案例 II</h2>
+            <canvas id="liveDemoCanvas" width="600" height="200"></canvas>
+            <textarea id="liveDemoInput" style="margin: 5px 0px 20px;width: 500px;height: 200px;    padding: 10px;"></textarea>
+            <script type="text/template" id="liveDemoTemplate">
+    You can type HTML into this <span style="color: green">canvas</span>.
+    <p>An img: <img src="tiger.png" alt="Tiger" /></p>
+    <style type="text/css">
+    body {
+        font-size: 32px;
+        background: url(tiger.png) top right no-repeat;
+        background-size: 50px;
+    }
+    </style>
+            </script>
+            <script type="text/javascript">
+            (function() {
+                var input = document.getElementById("liveDemoInput"),
+                    canvas = document.getElementById("liveDemoCanvas"),
+                    template = document.getElementById("liveDemoTemplate"),
+                    oldText = input.value;
+
+                var parsePixelValue = function(value) {
+                    return parseInt(value, 10);
+                };
+                var sizeCanvas = function(canvas) {
+                    var canvasStyle = window.getComputedStyle(canvas);
+
+                    canvas.width = parsePixelValue(canvasStyle.width) * 2;
+                    canvas.height = parsePixelValue(canvasStyle.height) * 2;
+                };
+
+                sizeCanvas(canvas);
+
+                var doDraw = function() {
+                    rasterizeHTML.drawHTML(input.value, canvas).then(function(result) {
+                        console.log('demo II result', result);
+                    }, function(e) {
+                        console.log('demo II error', e);
+                    });
+                };
+
+                input.onkeyup = function() {
+                    if (input.value !== oldText) {
+                        oldText = input.value;
+                        canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+                        doDraw();
+                    }
+                };
+
+                if (!input.value) {
+                    input.value = template.innerHTML.replace(/^ {4}/gm, "").replace(/^\n/g, "").replace(/\n +$/g, "\n");
+                }
+                doDraw();
+            }());
+            </script>
+            <h2>局限性</h2>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Same_origin_policy_for_JavaScript">所有资源</a> (HTML\CSS\images\fonts\JS) 都只能在页面加载完成后去绘制, 技术不支持使用<a href="http://enable-cors.org">CORS</a>。 I.E. 使用<code>drawURL()</code>下 只能在当前页面而且同一个域加载的页面和方法包括从该域嵌入的样式和图片。</p>
+            <p>在Firefox, Chrome，Safari都测试过了； 只是在 <a href="https://status.modern.ie/svgforeignobjectelement">&lt;foreignObject&gt;</a>IE11 以下暂且不支持。</p>
+            <p>在浏览器上仍然存在一些问题对于呈现svg和嵌入HTML到Canvas上。</p>
+            <p>需要查看所有的限制，<a href="https://github.com/cburgmer/rasterizeHTML.js/wiki/Limitations">点击我</a>.</p>
+            <h2>例子</h2>
+            <div class="highlight">
+                <pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>rasterizeHTML.js example<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"rasterizeHTML.allinone.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;canvas</span> <span class="na">id=</span><span class="s">"canvas"</span> <span class="na">width=</span><span class="s">"400"</span> <span class="na">height=</span><span class="s">"200"</span><span class="nt">&gt;&lt;/canvas&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+        <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"canvas"</span><span class="p">);</span>
+
+        <span class="nx">rasterizeHTML</span><span class="p">.</span><span class="nx">drawHTML</span><span class="p">(</span><span class="s1">'&lt;div style="font-size: 20px;"&gt;'</span><span class="p"> +</span>
+            <span class="s1">'Some &lt;span style="color: green"&gt;HTML&lt;/span&gt;'</span><span class="p"> +</span>
+            <span class="s1">' with an image &lt;img src="someimg.png"&gt;'</span><span class="p"> +</span>
+            <span class="s1">'&lt;/div&gt;'</span><span class="p">,</span>
+            <span class="nx">canvas</span><span class="p">);</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre>
+            </div>
+        </section>
+        <footer>
+            <p>由本人修改和更新 <a href="https://github.com/bluezhan">bluezhan</a></p>
+            <p><small>这个项目原处出自 <a href="https://github.com/cburgmer">cburgmer</a></small></p>
+        </footer>
+    </div>
+    <script src="scale.fix.js"></script>
+</body>
+
+</html>
