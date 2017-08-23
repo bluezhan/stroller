@@ -22,6 +22,11 @@
 
 我在我的代码下成为了一名浪荡子和闲逛者。  
 
+__目了个录__
+
+* [一、知乎-建议反馈-屏幕截图-原理(rasterizeHTML)](https://github.com/bluezhan/stroller#一知乎-建议反馈-屏幕截图-原理rasterizehtml)
+* [二、添加Github标题和提交commit的图标](https://github.com/bluezhan/stroller#二添加github标题和提交commit的图标)
+
 
 ### 一、知乎-建议反馈-屏幕截图-原理(rasterizeHTML)
 
@@ -59,4 +64,4 @@ Emoji Cheat Sheet 是绘文字短代码小抄列表。Github上支持Emoji表情
 
 网址：https://www.webpagefx.com/tools/emoji-cheat-sheet/
 
-:sunglasses::dizzy_face::imp::smiling_imp::neutral_face::no_mouth::innocent::alien::yellow_heart::blue_heart::purple_heart::heart::green_heart::broken_heart::heartbeat::heartpulse::two_hearts::revolving_hearts::cupid::dizzy::boom::collision::anger::exclamation::question::grey_exclamation::grey_question::zzz::dash::sweat_drops::notes::musical_note::fire::hankey::poop::shit::runner::running::couple::trollface:
+:sunglasses::dizzy_face::imp::smiling_imp::neutral_face::no_mouth::innocent::alien::yellow_heart::blue_heart::purple_heart::heart::green_heart::broken_heart::heartbeat::heartpulse::two_hearts::revolving_hearts::cupid::dizzy::boom::collision::anger::exclamation::question::grey_exclamation::grey_question::zzz::dash::sweat_drops::notes::musical_note::fire::hankey::poop::shit::runner::running::couple::trollface::sunny::umbrella::cloud::snowflake::snowman::zap::cyclone::foggy::ocean::cat::dog::mouse::hamster::rabbit::wolf::frog::tiger::koala::bear::pig::pig_nose::cow::boar::monkey_face::monkey::horse::racehorse::camel::sheep::elephant::panda_face::snake::bird::baby_chick::hatched_chick::hatching_chick::chicken::penguin::turtle::bug::honeybee::ant::beetle::snail::octopus::tropical_fish::fish::whale::whale2::dolphin::cow2::ram::rat::water_buffalo::tiger2::rabbit2::dragon::goat::rooster::dog2::pig2::mouse2::ox::dragon_face::blowfish::crocodile::dromedary_camel::leopard::cat2::poodle::paw_prints::bouquet::cherry_blossom::tulip::four_leaf_clover::rose::sunflower::hibiscus::maple_leaf::leaves::fallen_leaf::herb::mushroom::cactus::palm_tree::evergreen_tree::deciduous_tree::chestnut::seedling::blossom::ear_of_rice::shell::globe_with_meridians::sun_with_face::full_moon_with_face::new_moon_with_face::new_moon::waxing_crescent_moon::first_quarter_moon::waxing_gibbous_moon::full_moon::waning_gibbous_moon::last_quarter_moon::waning_crescent_moon::last_quarter_moon_with_face::first_quarter_moon_with_face::crescent_moon::earth_africa::earth_americas::earth_asia::volcano::milky_way::partly_sunny::octocat::squirrel:
