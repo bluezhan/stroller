@@ -1,16 +1,34 @@
-# stroller
+
+![](https://github.com/bluezhan/stroller/raw/master/images/logo.png)
+
+<p align="center">
+  <img src="https://img.shields.io/badge/language-HTML--CSS--JavaScript-green.svg">
+  <img src="https://img.shields.io/badge/web-togo-orange.svg">
+  <img src="https://img.shields.io/badge/license-MIT-ccc.svg">
+  <img src="https://img.shields.io/badge/Don't-Panic-ff69b4.svg">
+  <img src="https://img.shields.io/badge/stroller-0.1.1-ded76a.svg">
+</p>
+
 
 > `stroller`	英[ˈstrəʊlə(r)]、美[ˈstroʊlə(r)]  
   n.	散步者，闲逛者;
 
 
-### 一、知乎-建议反馈-屏幕截图-原理(asterizeHTML)
+“作为个体的我到底是谁?”、“我又会成为谁?”、“我又如何成就着自己?”    
 
+身份的焦虑带来了来自于空间、时间、及心灵的三重困境。在这个遥远的征途中，不断的调试、重叠、移位，以寻求精神的修复和重生。   
+
+生活空间的位移所带来的变化，实际上又与传统和现代性的矛盾深刻交织在一起。   
+
+我在我的代码下成为了一名浪荡子和闲逛者。  
+
+
+### 一、知乎-建议反馈-屏幕截图-原理(rasterizeHTML)
 
 将HTML渲染到指定的Canvas里  
 知乎就是采用了这个库  
 
-项目地址：[rasterizeHTML.js]()  
+项目地址：[rasterizeHTML.js](http://bluezhan.me/stroller/rasterizeHTML/)  
 
 #### API
 
@@ -32,7 +50,7 @@ rasterizeHTML.drawDocument( document [, canvas] [, options] )
 
 除了SVG是不允许所以rasterizeHTML链接到外部资源。js将加载外部图像、字体和内联通过样式表和存储它们 [data: URIs](https://en.wikipedia.org/wiki/Data_URI_scheme) (或者是内联样式的元素)。
 
-由鄙人修改和更新了一下下，别见笑： [bluezhan\rasterizeHTML.js]()   
+由鄙人修改和更新了一下下，别见笑： [bluezhan\rasterizeHTML.js](http://bluezhan.me/stroller/rasterizeHTML/)   
 这个项目原处出自 [cburgmer](https://github.com/cburgmer)-[rasterizeHTML.js](https://github.com/cburgmer/rasterizeHTML.js)
 
 ### 二、添加Github标题和提交commit的图标
@@ -40,3 +58,5 @@ rasterizeHTML.drawDocument( document [, canvas] [, options] )
 Emoji Cheat Sheet 是绘文字短代码小抄列表。Github上支持Emoji表情符号，短码，而不是特殊字符。 ：heart_eyes： 相当于 :heart_eyes: 。只需将鼠标悬停显示短代码，点击复制简码。有许多网站的支持这种类型的短代码： Github, Basecamp, Slack, Trello, Hackpad, Qiita, Zendesk, Ello. 
 
 网址：https://www.webpagefx.com/tools/emoji-cheat-sheet/
+
+:sunglasses::dizzy_face::imp::smiling_imp::neutral_face::no_mouth::innocent::alien::yellow_heart::blue_heart::purple_heart::heart::green_heart::broken_heart::heartbeat::heartpulse::two_hearts::revolving_hearts::cupid::dizzy::boom::collision::anger::exclamation::question::grey_exclamation::grey_question::zzz::dash::sweat_drops::notes::musical_note::fire::hankey::poop::shit::runner::running::couple::trollface:
