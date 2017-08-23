@@ -24,11 +24,11 @@
 
 __目了个录__
 
-* [一、知乎-建议反馈-屏幕截图-原理(rasterizeHTML)](https://github.com/bluezhan/stroller#一知乎-建议反馈-屏幕截图-原理rasterizehtml)
-* [二、添加Github标题和提交commit的图标](https://github.com/bluezhan/stroller#二添加github标题和提交commit的图标)
+* [一、知乎-建议反馈-屏幕截图-原理(rasterizeHTML)](#一知乎-建议反馈-屏幕截图-原理rasterizehtml)
+* [二、添加Github标题和提交commit的图标](#二添加github标题和提交commit的图标)
 
 
-### 一、知乎-建议反馈-屏幕截图-原理(rasterizeHTML)
+## 一、知乎-建议反馈-屏幕截图-原理(rasterizeHTML)
 
 将HTML渲染到指定的Canvas里  
 知乎就是采用了这个库  
@@ -58,7 +58,7 @@ rasterizeHTML.drawDocument( document [, canvas] [, options] )
 由鄙人修改和更新了一下下，别见笑： [bluezhan\rasterizeHTML.js](http://bluezhan.me/stroller/rasterizeHTML/)   
 这个项目原处出自 [cburgmer](https://github.com/cburgmer)-[rasterizeHTML.js](https://github.com/cburgmer/rasterizeHTML.js)
 
-### 二、添加Github标题和提交commit的图标
+## 二、添加Github标题和提交commit的图标
 
 Emoji Cheat Sheet 是绘文字短代码小抄列表。Github上支持Emoji表情符号，短码，而不是特殊字符。 ：heart_eyes： 相当于 :heart_eyes: 。只需将鼠标悬停显示短代码，点击复制简码。有许多网站的支持这种类型的短代码： Github, Basecamp, Slack, Trello, Hackpad, Qiita, Zendesk, Ello. 
 
