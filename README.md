@@ -29,6 +29,7 @@ __目了个录__
 * [三、知乎加载图片时从模糊到清晰的这个效果](#三知乎加载图片时从模糊到清晰的这个效果)
 * [四、百度M站将公共的代码缓存到localStorage](#百度M站将公共的代码缓存到localStorage)
 * [五、淘宝和天猫首页都用到了哪些技巧或者技术](#淘宝和天猫首页都用到了哪些技巧或者技术)
+* [六、新浪微博都用到了哪些技巧或者技术](#新浪微博都用到了哪些技巧或者技术)
 
 ## 一、知乎-建议反馈-屏幕截图-原理(rasterizeHTML)
 
@@ -83,11 +84,9 @@ __TODO__
 
 百度M站使用了localStorage缓存Js和css文件。
 
-#### 参考
-
-[webapp之路--百度手机前端经验（转）](http://www.cnblogs.com/dunken/p/4383101.html)
-[Web移动端使用localStorage缓存Js和css文件](http://blog.csdn.net/a497785609/article/details/48321405)
-[手机百度localstorage细粒度缓存介绍](http://js8.in/2015/12/06/%E6%89%8B%E6%9C%BA%E7%99%BE%E5%BA%A6localstorage%E7%BB%86%E7%B2%92%E5%BA%A6%E7%BC%93%E5%AD%98%E4%BB%8B%E7%BB%8D/)
+[webapp之路--百度手机前端经验（转）](http://www.cnblogs.com/dunken/p/4383101.html)   
+[Web移动端使用localStorage缓存Js和css文件](http://blog.csdn.net/a497785609/article/details/48321405)    
+[手机百度localstorage细粒度缓存介绍](http://js8.in/2015/12/06/%E6%89%8B%E6%9C%BA%E7%99%BE%E5%BA%A6localstorage%E7%BB%86%E7%B2%92%E5%BA%A6%E7%BC%93%E5%AD%98%E4%BB%8B%E7%BB%8D/)    
 [localStorage的黑科技-js和css缓存机制](http://www.jianshu.com/p/0fa0bf842bbb)
 
 
@@ -95,8 +94,15 @@ __TODO__
 
 https://www.zhihu.com/question/46149490
 
+![](https://github.com/bluezhan/stroller/raw/master/images/taobao.png) 
 
+## 六、新浪微博都用到了哪些技巧或者技术
 
+长链接的技术，long polling  
+cometd 支持长连接，WebSocket
 
-
-
+[新浪微博平台架构解析](https://sdk.cn/news/5593)  
+[从新浪微博的改版谈网页重构](http://kb.cnblogs.com/page/114649/)  
+[使用BigPipe提升浏览速度](http://velocity.oreilly.com.cn/2011/ppts/WK_velocity.pdf)  
+[名站技术分析 — facebook奇特的页面加载技术](http://www.cnblogs.com/BearsTaR/archive/2010/06/18/facebook_html_chunk.html)  
+[围观STK](http://www.cnblogs.com/jkisjk/archive/2012/08/11/about_stk.html)  
