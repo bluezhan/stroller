@@ -132,4 +132,206 @@ cometd 支持长连接，WebSocket
 [从新浪微博的改版谈网页重构](http://kb.cnblogs.com/page/114649/)  
 [使用BigPipe提升浏览速度](http://velocity.oreilly.com.cn/2011/ppts/WK_velocity.pdf)  
 [名站技术分析 — facebook奇特的页面加载技术](http://www.cnblogs.com/BearsTaR/archive/2010/06/18/facebook_html_chunk.html)  
-[围观STK](http://www.cnblogs.com/jkisjk/archive/2012/08/11/about_stk.html)  
+[围观STK](http://www.cnblogs.com/jkisjk/archive/2012/08/11/about_stk.html) 
+
+
+### 关于新浪微博的那些前端知识
+
+大概在2年前，我在查看新浪微博web源码的时候，记得发现他们在对前端文件的压缩方式很有印象。
+
+我们来看看这JavaScript文件请求链接：
+
+```js
+https://g.alicdn.com/kissy/k/1.4.2/??event-min.js,event/dom/base-min.js,event/base-min.js,dom/base-min.js,event/dom/shake-min.js,event/dom/focusin-min.js,event/custom-min.js,node-min.js,anim-min.js,anim/base-min.js,promise-min.js,anim/timer-min.js,anim/transition-min.js
+```
+
+```js
+https://g.alicdn.com/kissy/k/1.4.2/??cookie-min.js,overlay-min.js,component/container-min.js,component/control-min.js,base-min.js,component/manager-min.js,xtemplate/runtime-min.js,component/extension/shim-min.js,component/extension/align-min.js,component/extension/content-xtpl-min.js,component/extension/content-render-min.js
+```
+
+是的，我们现在看到是这里面有个字眼 `kissy` ；这不难说，因为新浪微博被阿里承包了，固然会推广使用了阿里的技术。  
+
+这不是重点，在新浪微博易主之前它也是这样弄的。  
+
+就是这条链接放置所要请求的JavaScript并将它们一起合并了。  
+
+我当时一脸懵逼，怎么这么吊，而且我当时是在用 Node 的相关压缩处理方式或工具，比如 r.js、grunt、gulp等等。  
+
+这不难看出，这是服务器或者框架那边做了文件逻辑处理。  
+
+好啦，简简单单谈个开始，我们再聊聊新浪微博的其它前端实现的知识。
+
+### 资源目录
+
+这就是网站请求的资源目录：  
+
+![](https://github.com/bluezhan/stroller/raw/master/images/weibo-1.png)
+
+不难看出来，对JavaScript、HTML、images启动了多个域名处理。
+
+### 看看CSS结构
+
+
+#### 未登录时请求的CSS
+
+![](https://github.com/bluezhan/stroller/raw/master/images/weibo-2.png)
+
+文件目录：
+
+```js
+  - frame.css
+  - comb_login_v2.css
+  - skin.css
+  - base.css
+```
+
+##### frame.css
+
+请求链接：  
+
+```js
+http://img.t.sinajs.cn/t6/style/css/module/base/frame.css
+```
+
+我还特么去看了一遍内容源码。  
+
+大部分CSS命名有 `W_`、`B_` 、`WB_` 开头命名的，很明显吧。      
+不过还有 `S_`、`SW_` 、`PCD_`、`UI_` 开头的....  
+其它小写开头的命名的我就不提了。  
+
+顾名思义这CSS是框架骨架CSS了。  
+
+不过不过，这些简写命名也行是压缩工具或者等等其它东西特地弄的。
+
+##### comb_login_v2.css
+
+这个CSS从命名可以看出是对登录特殊的CSS。  
+里面出现 `W_unlogin_`、`B_unlog`、`PCD_pictext_i` 为重。
+
+##### skin.css
+
+这个不用说了就是皮肤的CSS，里面控制呈现的CSS：
+
+```
+color: #fff;
+background-color: #fff;
+border-color: #fff;
+...
+```
+
+
+##### base.css
+
+至于base.css，为毛隔不到0.5ms加载了两次呢，不明白。  
+
+![](https://github.com/bluezhan/stroller/raw/master/images/weibo-3.png)
+
+看得出是嵌入淘宝登录逻辑带过来的，为毛要去请求淘宝账号呢，嘿嘿嘿.......你懂得。  
+
+#### 登录时请求的CSS
+
+![](https://github.com/bluezhan/stroller/raw/master/images/weibo-4.png)
+
+多了几个CSS  
+
+```
+ - home_A.css
+ - extra.css
+ - PCD_mplayer.css
+```
+
+
+#### 定时请求push_count.json
+
+
+每隔30秒请求一下下面这个链接：
+
+```
+Request URL:http://rm.api.weibo.com/2/remind/push_count.json?trim_null=1&with_dm_group=0&with_settings=1&exclude_attitude=1&with_common_cmt=1&with_comment_attitude=1&with_common_attitude=1&with_moments=1&with_dm_unread=1&msgbox=true&with_page_group=1&with_chat_group=1&with_chat_group_notice=1&_pid=1&count=0&source=351354573&status_type=0&callback=STK_14795361469975
+```
+
+
+#### bigpipe 技术
+
+通过JavaScript动态生成HTML  
+http://blog.csdn.net/fyqcdbdx/article/details/7042355  
+http://idlelife.org/archives/969  
+http://timyang.net/  
+https://github.com/JacksonTian/fks  
+http://caibaojian.com/some-fe  
+http://www.yixieshi.com/10354.html  
+http://web.jobbole.com/86343/  
+http://kb.cnblogs.com/page/114649/  
+http://tech.sina.com.cn/i/2010-11-16/14434871585.shtml  
+https://zhuanlan.zhihu.com/p/23074882  
+
+#### STK 脚本库
+
+http://www.cnblogs.com/jkisjk/archive/2012/08/11/about_stk.html
+
+#### 页面分片加载
+
+http://www.cnblogs.com/BearsTaR/archive/2010/05/19/flush_chunk_encoding.html  
+facebook使用了chunk 对页面进行分块输出
+
+#### document.execCommand
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Document/execCommand
+
+#### 前端4秒的分水岭事件
+
+// TODO
+
+#### DNS Prefetch
+
+// TODO
+
+#### 微博背后的那些算法
+
+http://blog.csdn.net/zhangyunpengchang/article/details/50349981
+
+http://blog.csdn.net/stdcoutzyx/article/details/18814627
+
+#### 千万级规模高性能、高并发
+
+http://www.wtoutiao.com/p/1catvAN.html
+http://mobile.51cto.com/comment-492447.htm
+http://web.jobbole.com/86343/
+
+
+#### 面试题
+
+// TODO
+
+#### 《新浪微博我们所不知道的发展》PPT
+
+技术，小步快跑，媒体运营，定位，数据。
+
+- 2009年 开始
+- 2010年 推广起步
+- 2011年 不断尝试，小步快跑
+- 2012年 定位思考
+- 2013年 大胆转型
+- 2014年 媒体运营定型
+- 2015年 起飞
+- 2016年 起飞起飞再起飞
+
+僵尸粉满天飞的那年，转行中...
+
+#### 后文
+
+一个勤奋的程序员不一定是一个好程序员，而一个懒惰的程序员却很有可能是一个好程序员。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
