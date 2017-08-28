@@ -92,9 +92,36 @@ __TODO__
 
 ## 五、淘宝和天猫首页都用到了哪些技巧或者技术
 
-https://www.zhihu.com/question/46149490
+[知乎-淘宝和天猫首页都用到了哪些技巧或者技术？](https://www.zhihu.com/question/46149490)    
 
 ![](https://github.com/bluezhan/stroller/raw/master/images/taobao.png) 
+
+#### 淘宝：  
+```
+    background: url(jpg) no-repeat #F40;
+    background-image: -webkit-image-set(url(jpg) 1x,url(.png) 2x);
+    background-image: -moz-image-set(url(jpg) 1x,url(.png) 2x);
+    background-image: -ms-image-set(url(jpg) 1x,url(.png) 2x);
+    background-image: -o-image-set(url(jpg) 1x,url(.png) 2x);
+    _background-image: url(jpg);
+```
+```
+ <ins></ins>
+```
+
+在隐藏元素的时候记得把动画过渡也关闭了。   
+display: none;  
+transition: none;  
+
+像大部分优化的机制就是使用JavaScript来处理DOM的植入   
+不过淘宝使用textatea来装 HTML ~~~  
+
+![](https://github.com/bluezhan/stroller/raw/master/images/1479696653291.png) 
+  
+对字体渲染  
+
+-webkit-font-smoothing（听说在Mac OS 才有效）   
+[CSS 中 -webkit-font-smoothing: antialiased 反而让字体更难看了?](https://segmentfault.com/q/1010000000467910)
 
 ## 六、新浪微博都用到了哪些技巧或者技术
 
