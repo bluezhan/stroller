@@ -36,7 +36,7 @@ __目了个录__
 将HTML渲染到指定的Canvas里  
 知乎就是采用了这个库  
 
-项目地址：[rasterizeHTML.js](http://bluezhan.me/stroller/rasterizeHTML/)  
+项目地址：[rasterizeHTML.js](http://bluezhan.com/stroller/rasterizeHTML/)  
 
 #### API
 
@@ -58,7 +58,7 @@ rasterizeHTML.drawDocument( document [, canvas] [, options] )
 
 除了SVG是不允许所以rasterizeHTML链接到外部资源。js将加载外部图像、字体和内联通过样式表和存储它们 [data: URIs](https://en.wikipedia.org/wiki/Data_URI_scheme) (或者是内联样式的元素)。
 
-由鄙人修改和更新了一下下，别见笑： [bluezhan\rasterizeHTML.js](http://bluezhan.me/stroller/rasterizeHTML/)   
+由鄙人修改和更新了一下下，别见笑： [bluezhan\rasterizeHTML.js](http://bluezhan.com/stroller/rasterizeHTML/)   
 这个项目原处出自 [cburgmer](https://github.com/cburgmer)-[rasterizeHTML.js](https://github.com/cburgmer/rasterizeHTML.js)
 
 ## 二、添加Github标题和提交commit的图标
